@@ -1,22 +1,6 @@
 import random
 
-class TicTacToeFunctions:
-    def drawBoard(board):
-        # This function prints out the board that it was passed.
-
-        # "board" is a list of 10 strings representing the board (ignore index 0)
-        print('   |   |')
-        print(' ' + board[7] + ' | ' + board[8] + ' | ' + board[9])
-        print('   |   |')
-        print('-----------')
-        print('   |   |')
-        print(' ' + board[4] + ' | ' + board[5] + ' | ' + board[6])
-        print('   |   |')
-        print('-----------')
-        print('   |   |')
-        print(' ' + board[1] + ' | ' + board[2] + ' | ' + board[3])
-        print('   |   |')
-
+class printstuff:
     def inputplayer1Letter():
         # Lets the player 1 type which letter they want to be.
         # Returns a list with the player 1's letter as the first item, and the player 2's letter as the second.
@@ -30,18 +14,37 @@ class TicTacToeFunctions:
             return ['X', 'O']
         else:
             return ['O', 'X']
-
     def whoGoesFirst():
         # Randomly choose the player 1 who goes first.
         if random.randint(0, 1) == 0:
             return 'Player 2'
         else:
             return 'Player 1'
-
     def playAgain():
         # This function returns True if the player 1 wants to play again, otherwise it returns False.
         print('Do you want to play again? (yes or no)')
         return input().lower().startswith('y')
+
+
+class TicTacToeFunctions:
+    def __init__(self, board):
+        self.board = board
+
+    def drawBoard(self):
+        # This function prints out the board that it was passed.
+
+        # "board" is a list of 10 strings representing the board (ignore index 0)
+        print('   |   |')
+        print(' ' + str(self[7]) + ' | ' + str(self[8]) + ' | ' + str(self[9]))
+        print('   |   |')
+        print('-----------')
+        print('   |   |')
+        print(' ' + str(self[4]) + ' | ' + str(self[5]) + ' | ' + str(self[6]))
+        print('   |   |')
+        print('-----------')
+        print('   |   |')
+        print(' ' + str(self[1]) + ' | ' + str(self[2]) + ' | ' + str(self[3]))
+        print('   |   |')
 
     def makeMove(board, letter, move):
         board[move] = letter
@@ -49,52 +52,48 @@ class TicTacToeFunctions:
     def isWinner(bo, le):
         # Given a board and a player1's letter, this function returns True if that player1 has won.
         # We use bo instead of board and le instead of letter so we don't have to type as much.
-        return ((bo[7] == le and bo[8] == le and bo[9] == le) or # across the top
-        (bo[4] == le and bo[5] == le and bo[6] == le) or # across the middle
-        (bo[1] == le and bo[2] == le and bo[3] == le) or # across the bottom
-        (bo[7] == le and bo[4] == le and bo[1] == le) or # down the left side
-        (bo[8] == le and bo[5] == le and bo[2] == le) or # down the middle
-        (bo[9] == le and bo[6] == le and bo[3] == le) or # down the right side
-        (bo[7] == le and bo[5] == le and bo[3] == le) or # diagonal
-        (bo[9] == le and bo[5] == le and bo[1] == le)) # diagonal
+        return ((bo[7] == le and bo[8] == le and bo[9] == le) or  # across the top
+                (bo[4] == le and bo[5] == le and bo[6] == le) or  # across the middle
+                (bo[1] == le and bo[2] == le and bo[3] == le) or  # across the bottom
+                (bo[7] == le and bo[4] == le and bo[1] == le) or  # down the left side
+                (bo[8] == le and bo[5] == le and bo[2] == le) or  # down the middle
+                (bo[9] == le and bo[6] == le and bo[3] == le) or  # down the right side
+                (bo[7] == le and bo[5] == le and bo[3] == le) or  # diagonal
+                (bo[9] == le and bo[5] == le and bo[1] == le))  # diagonal
 
-    def getBoardCopy(board):
+    def getBoardCopy(self):
         # Make a duplicate of the board list and return it the duplicate.
         dupeBoard = []
 
-        for i in board:
+        for i in self.board:
             dupeBoard.append(i)
 
         return dupeBoard
-    
-    def isSpaceFree(board, move):
-        # Return true if the passed move is free on the passed board.
-        return board[move] == ' '
 
-    def getplayer1Move(board):
+    def isSpaceFree(self, move):
+        # Return true if the passed move is free on the passed board.
+        return self[move] == ' '
+
+    def getplayer1Move(self):
         # Let the player 1 type in his move.
-        copy = board.getBoardCopy(board)
         move = ' '
-        while move not in '1 2 3 4 5 6 7 8 9'.split() or not board.isSpaceFree(board, int(move)):
-            print('PLayer 1, what is your next move? (1-9)')
+        while move not in '1 2 3 4 5 6 7 8 9'.split() or not TicTacToeFunctions.isSpaceFree(self, int(move)):
+            print('Player 1, what is your next move? (1-9)')
             move = input()
         return int(move)
 
-    def getplayer2Move(board):
-        # Let the player 2 type in his move.
-        copy = board.getBoardCopy(board)
+    def getplayer2Move(self):
         move = ' '
-        while move not in '1 2 3 4 5 6 7 8 9'.split() or not board.isSpaceFree(board, int(move)):
+        while move not in '1 2 3 4 5 6 7 8 9'.split() or not TicTacToeFunctions.isSpaceFree(self, int(move)):
             print('Player 2, what is your next move? (1-9)')
             move = input()
         return int(move)
-
-    def chooseRandomMoveFromList(board, movesList):
+    def chooseRandomMoveFromList(self, movesList):
         # Returns a valid move from the passed list on the passed board.
         # Returns None if there is no valid move.
         possibleMoves = []
         for i in movesList:
-            if board.isSpaceFree(board, i):
+            if self.board.isSpaceFree(self.board, i):
                 possibleMoves.append(i)
 
         if len(possibleMoves) != 0:
@@ -102,9 +101,10 @@ class TicTacToeFunctions:
         else:
             return None
 
-    def isBoardFull(board):
+    def isBoardFull(self):
         # Return True if every space on the board has been taken. Otherwise return False.
         for i in range(1, 10):
-            if board.isSpaceFree(board, i):
+            if TicTacToeFunctions.isSpaceFree(self, i):
                 return False
         return True
+
