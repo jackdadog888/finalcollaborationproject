@@ -1,5 +1,6 @@
 import random
-class TicTacToe:
+
+class TicTacToeFunctions:
     def drawBoard(board):
         # This function prints out the board that it was passed.
 
@@ -36,6 +37,7 @@ class TicTacToe:
             return 'Player 2'
         else:
             return 'Player 1'
+
     def playAgain():
         # This function returns True if the player 1 wants to play again, otherwise it returns False.
         print('Do you want to play again? (yes or no)')
@@ -64,24 +66,25 @@ class TicTacToe:
             dupeBoard.append(i)
 
         return dupeBoard
+    
     def isSpaceFree(board, move):
         # Return true if the passed move is free on the passed board.
         return board[move] == ' '
 
     def getplayer1Move(board):
         # Let the player 1 type in his move.
-        copy = getBoardCopy(board)
+        copy = board.getBoardCopy(board)
         move = ' '
-        while move not in '1 2 3 4 5 6 7 8 9'.split() or not isSpaceFree(board, int(move)):
+        while move not in '1 2 3 4 5 6 7 8 9'.split() or not board.isSpaceFree(board, int(move)):
             print('PLayer 1, what is your next move? (1-9)')
             move = input()
         return int(move)
 
     def getplayer2Move(board):
         # Let the player 2 type in his move.
-        copy = getBoardCopy(board)
+        copy = board.getBoardCopy(board)
         move = ' '
-        while move not in '1 2 3 4 5 6 7 8 9'.split() or not isSpaceFree(board, int(move)):
+        while move not in '1 2 3 4 5 6 7 8 9'.split() or not board.isSpaceFree(board, int(move)):
             print('Player 2, what is your next move? (1-9)')
             move = input()
         return int(move)
@@ -91,7 +94,7 @@ class TicTacToe:
         # Returns None if there is no valid move.
         possibleMoves = []
         for i in movesList:
-            if isSpaceFree(board, i):
+            if board.isSpaceFree(board, i):
                 possibleMoves.append(i)
 
         if len(possibleMoves) != 0:
@@ -102,6 +105,6 @@ class TicTacToe:
     def isBoardFull(board):
         # Return True if every space on the board has been taken. Otherwise return False.
         for i in range(1, 10):
-            if isSpaceFree(board, i):
+            if board.isSpaceFree(board, i):
                 return False
         return True
