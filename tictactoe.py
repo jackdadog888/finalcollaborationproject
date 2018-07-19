@@ -1,13 +1,19 @@
 from tictactoeclass import TicTacToeFunctions
+from tictactoeclass import printstuff
 
 
 print('Welcome to Tic Tac Toe!')
 
+theBoard = TicTacToeFunctions
+determineletter = printstuff
+
 while True:
     # Reset the board
     theBoard = [' '] * 10
-    player1Letter, player2Letter = TicTacToeFunctions.inputplayer1Letter()
-    turn = TicTacToeFunctions.whoGoesFirst()
+    playerLetter = printstuff.inputplayer1Letter()
+    player1Letter = playerLetter[0]
+    player2Letter = playerLetter[1]
+    turn = printstuff.whoGoesFirst()
     print(turn + ' will go first.')
     gameIsPlaying = True
 
@@ -48,5 +54,5 @@ while True:
                 else:
                     turn = 'Player 1'
 
-    if not TicTacToeFunctions.playAgain():
+    if not printstuff.playAgain():
         break
