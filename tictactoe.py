@@ -2,7 +2,7 @@ from tictactoeclass import TicTacToeFunctions
 from tictactoeclass import printstuff
 
 
-print('Welcome to Tic Tac Toe!')
+print('𝕎𝕖𝕝𝕔𝕠𝕞𝕖 𝕥𝕠 𝕋𝕚𝕔 𝕋𝕒𝕔 𝕋𝕠𝕖!')
 
 theBoard = TicTacToeFunctions
 determineletter = printstuff
@@ -14,7 +14,7 @@ while True:
     player1Letter = playerLetter[0]
     player2Letter = playerLetter[1]
     turn = printstuff.whoGoesFirst()
-    print(turn + ' will go first.')
+    print(turn + ' will go first!')
     gameIsPlaying = True
 
     while gameIsPlaying:
@@ -27,7 +27,7 @@ while True:
 
             if TicTacToeFunctions.isWinner(theBoard, player1Letter):
                 TicTacToeFunctions.drawBoard(theBoard)
-                print('Hooray! Player 1 won the game!')
+                print('༼ つ ◕▾◕ ༽つ Hooray! Player 1 won the game!')
                 gameIsPlaying = False
             else:
                 if TicTacToeFunctions.isBoardFull(theBoard):
@@ -44,12 +44,12 @@ while True:
 
             if TicTacToeFunctions.isWinner(theBoard, player2Letter):
                 TicTacToeFunctions.drawBoard(theBoard)
-                print('Hooray! Player 2 won the game!')
+                print('(~˘▾˘)~ Hooray! Player 2 won the game!')
                 gameIsPlaying = False
             else:
                 if TicTacToeFunctions.isBoardFull(theBoard):
                     TicTacToeFunctions.drawBoard(theBoard)
-                    print('The game is a tie!')
+                    print('¯\_(ツ)_/¯ The game is a tie!')
                     break
                 else:
                     turn = 'Player 1'
