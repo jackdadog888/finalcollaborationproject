@@ -1,4 +1,5 @@
 import random
+import time
 
 class printstuff:
     def inputplayer1Letter():
@@ -6,8 +7,14 @@ class printstuff:
         # Returns a list with the player 1's letter as the first item, and the player 2's letter as the second.
         letter = ''
         while not (letter == 'X' or letter == 'O'):
-            print('Hey! Player 1, do you want to be X or O?')
+            print('Player 1, do you want to be X or O?')
             letter = input().upper()
+            print('3!')
+            time.sleep(1)
+            print('2!')
+            time.sleep(1)
+            print('1!')
+            print('Begin!')
 
         # the first element in the tuple is the player 1's letter, the second is the player 2's letter.
         if letter == 'X':
@@ -22,7 +29,7 @@ class printstuff:
             return 'Player 1'
     def playAgain():
         # This function returns True if the player 1 wants to play again, otherwise it returns False.
-        print('Do you want to play again? (yes or no)')
+        print('Do you want to play again? (Yes or No)')
         return input().lower().startswith('y')
 
 
